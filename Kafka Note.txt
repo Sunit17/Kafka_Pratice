@@ -1,0 +1,51 @@
+Why Apchae Kafka ?
+
+1.High Throughput (read write operation )
+2.Fault Tolerance (Handle failures without completely collapsing)
+3.Durable
+4.Scalable 
+
+
+ ---------------Architecture -----
+ 
+ zookeeper helps kafka broker state managemnet 
+ 
+ brooker- (Kafka server (multi server))
+ 
+ topic - comes under broker (to categories data )
+ 
+ partition - comes under topic  store data (with help of offset )
+ 
+ zookeeper Start ==> bin\windows\zookeeper-server-start.bat config\zookeeper.properties
+ 
+ Kafka Server Start ==>bin\windows\kafka-server-start.bat config\server.properties
+
+Kafka use ZooKeeper 
+
+for create new topic == kafka topic
+
+produce example message with kafka-console-producer
+
+consume the message with kafka-console consumer
+
+create new kafka topic ==>bin\windows\kafka-topics.bat --create --topic user-topic --bootstrap-server localhost:9092
+
+
+producer create ==> bin\windows\kafka-console-producer.bat --topic user-topic --bootstrap-server localhost:9092
+
+
+consumer => bin\windows\kafka-console-consumer.bat --topic user-topic --from-beginning --bootstrap-server localhost:9092
+
+
+
+NewTopic(class) helps to create topic ==>return TopicBuilder.name("location-update").pratition
+.build()
+
+
+by the help of producer , we can produce message ==> by help KafkaTemplate<key,value>
+send() inside it so kafkatemplate.send(topic,message)
+
+Producer configuration
+spring.kafka.producer.bootstrap-servers=localhost:9092
+spring.kafka.producer.key-serializer=org.apache.kafka.common.serialization.StringSerializer
+spring.kafka.producer.value-serializer=org.apache.kafka.common.serialization.StringSerializer
